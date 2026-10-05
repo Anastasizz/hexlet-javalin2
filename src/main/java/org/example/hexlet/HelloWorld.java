@@ -13,6 +13,11 @@ public class HelloWorld {
                             //config.routes.get("/", ctx -> ctx.result("Hello World"));
                             config.router.apiBuilder(() -> {
                                 io.javalin.apibuilder.ApiBuilder.get("/", ctx -> ctx.result("Hello World"));
+                                io.javalin.apibuilder.ApiBuilder.get("/hello", ctx -> {
+                                    var name = ctx.queryParam("name");
+                                    ctx.result("Hello, " + name + "!");
+                                } );
+
                             });
                         });
         app.start(7070); // Стартуем веб-сервер
